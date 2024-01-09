@@ -1,0 +1,43 @@
+<section class="container" [ngClass]="{'form-shadow': registrationForm.touched}">
+  <header>Registration Form</header>
+
+  <form class="form" (ngSubmit)="OnFormSubmitted()" #registrationForm="ngForm">
+    <div class="column">
+      <div class="input-box">
+        <input type="text" placeholder="First Name" name="firstName" ngModel #fname="ngModel" minlength="3"
+          maxlength="30" [ngClass]="{'invalid-input': fname.invalid && registrationForm.submitted}" />
+        <div>
+          <small *ngIf="fname.invalid && registrationForm.submitted">*Minimo 3 massimo 30
+            caratteri</small>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="text" placeholder="Last Name" name="lastName" ngModel #lname="ngModel" minlength="3" maxlength="30"
+          [ngClass]="{'invalid-input': lname.invalid && registrationForm.submitted}" />
+        <small *ngIf="lname.invalid && registrationForm.submitted">*Minimo 3 massimo 30
+          caratteri</small>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <input type="text" placeholder="Email" name="email" ngModel #email="ngModel" email maxlength="30"
+        [ngClass]="{'invalid-input': email.invalid && registrationForm.submitted}" />
+      <small *ngIf="email.invalid && registrationForm.submitted">*l'e-mail non è valida </small>
+    </div>
+
+
+    <div class="input-box password">
+      <label>Password</label>
+      <input type="text" placeholder="password" name="pass" ngModel #pass="ngModel" minlength="3" maxlength="30"
+        [ngClass]="{'invalid-input': pass.invalid && registrationForm.submitted}" />
+      <small *ngIf="pass.invalid && (pass.touched || registrationForm.submitted)">Minimo 3 massimo 60 caratteri</small>
+      <input type="text" placeholder="Repeat password" name="pass2" ngModel #pass2="ngModel" />
+      <small *ngIf=" pass.value != pass2.value && registrationForm.submitted">Pass non
+        e
+        eguale</small>
+
+    </div>
+    <input type="submit" value="confirm" class="submit-btn">
+  </form>
+</section>
